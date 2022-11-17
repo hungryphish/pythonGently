@@ -1,25 +1,27 @@
-def mergeTwoLists(l1, l2):
-  answer =[]
-  l1num = 0
-  l2num = 0
-  #loop until the answer list is populated with both lists.
-  while len(answer)<(len(l1)+len(l2)):
-    #makes sure function wont try to add indices that dont exist.
-    #don't need to do this for l2 on this line because we do it inside the loop.
-    if l1num < len(l1):
-      #makes sure dunction wont try to add indices that dont exist in list 2. 
-      #checks for next lowest number in each list.
-      # if number is from L1 it will append to the answer list
-      if l2num >= len(l2) or l1[l1num] < l2[l2num]:
-        answer.append(l1[l1num])
-        l1num+=1
-      #if number is from list 2 it ill append to answer list.
-      else:
-        answer.append(l2[l2num])
-        l2num+=1
-  return(answer)
-print(mergeTwoLists([4, 5], [1, 2, 3]))
-
+def mergeXLists(listOfLists):
+  lst1=listOfLists[0]    #i
+  lst2=listOfLists[1]  #j
+  results=[]
+  i=0
+  j=0
+  while i < len(lst1) and j < len(lst2):
+    if lst1[i]<lst2[j]:
+      results.append(lst1[i])
+      i+=1
+    else:
+      results.append(lst2[j])
+      j+=1
+  while i < len(lst1):
+    if j >= len(lst2):
+      results.append(lst1[i])
+      i+=1        
+  while j < len(lst2):
+    if i >= len(lst1):
+      results.append(lst2[j])
+      j+=1        
+      
+  return(results)
+print(f'list is {mergeXLists([[15,24,56],[17,42,62,73,82]])}')
 
 assert mergeTwoLists([1, 3, 6], [5, 7, 8, 9]) == [1, 3, 5, 6, 7, 8, 9]
 
